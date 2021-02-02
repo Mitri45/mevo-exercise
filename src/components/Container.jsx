@@ -6,6 +6,7 @@ export default function Container({ children }) {
 }
 
 Container.propTypes = {
+  // eslint-disable-next-line react/require-default-props
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.element),
     PropTypes.element.isRequired,

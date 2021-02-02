@@ -40,7 +40,6 @@ function App() {
         (errorData) => {
           setZonesError(errorData);
           // TODO: Error handling
-          console.log(zonesError);
         },
       );
   }, [zonesError]);
