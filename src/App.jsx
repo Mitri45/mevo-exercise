@@ -100,7 +100,7 @@ function App() {
           minZoom={12}
           width='100%'
           height='100%'
-          mapStyle='mapbox://styles/mapbox/streets-v11'
+          mapStyle='mapbox://styles/mapbox/streets-v9'
           onViewportChange={setViewport}
           mapboxApiAccessToken={MAPBOX_TOKEN}
         >
