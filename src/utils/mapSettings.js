@@ -9,7 +9,7 @@ const mapSettings = {
     positionOptions: {
       enableHighAccuracy: true,
     },
-    fitBoundsOptions: { maxZoom: 25 },
+    fitBoundsOptions: { maxZoom: 15 },
   },
   navigationControl: {
     showCompass: false,

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Container({ children }) {
-  return <div className='h-screen flex flex-col'>{children}</div>;
+  return <div className='h-screen flex flex-col font-body'>{children}</div>;
 }
 
 Container.propTypes = {

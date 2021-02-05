@@ -7,6 +7,9 @@ module.exports = {
       'mevo-main': '#00afdd',
     }),
     extend: {},
+    fontFamily: {
+      body: ['Titillium Web', 'sans-serif'],
+    },
   },
   variants: {
     extend: {},

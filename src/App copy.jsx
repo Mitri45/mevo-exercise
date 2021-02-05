@@ -1,18 +1,27 @@
 /* eslint-disable react/jsx-props-no-spreading */
-
 import React, { useState, useEffect, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import MapGL, {
+import ReactMapGL, {
   GeolocateControl,
   NavigationControl,
   Marker,
   Source,
   Layer,
 } from 'react-map-gl';
-import mapSettings from '../utils/mapSettings';
+import Navbar from './components/Navbar';
+import Container from './components/Container';
+import mapSettings from './utils/mapSettings';
 
-export default function Map(props) {
-  const { mapboxApiAccessToken, viewport, setViewport } = props;
+const MAPBOX_TOKEN =
+  'pk.eyJ1IjoibWl0cmk0NSIsImEiOiJja2tqMjJ3djYwcXdpMnZxa3QydWVsYWh6In0.bS8T8wGM8SJCmouWHcJ1fA';
+
+function App() {
+  const [viewport, setViewport] = useState({
+    latitude: -41.292757,
+    longitude: 174.790984,
+    zoom: 12,
+    bearing: 0,
+    pitch: 0,
+  });
   const [zonesToRender, setZonesToRender] = useState([]);
   const [zonesError, setZonesError] = useState(null);
 
@@ -79,29 +88,33 @@ export default function Map(props) {
   }, [markersIsLoaded, markerError, mapMarkersData]);
 
   return (
-    <MapGL
-      {...viewport}
-      width='100%'
-      height='100%'
-      mapStyle='mapbox://styles/mapbox/streets-v9'
-      onViewportChange={setViewport}
-      mapboxApiAccessToken={mapboxApiAccessToken}
-    >
-      {zonesToRender}
-      {markersToRender}
-      <NavigationControl {...mapSettings.navigationControl} />
-      <GeolocateControl
-        {...mapSettings.geolocateControl}
-        trackUserLocation
-        onViewportChange={() => setViewport({ ...viewport, zoom: 12 })}
-      />
-    </MapGL>
+    <div className='App'>
+      <Container>
+        <Navbar />
+        <ReactMapGL
+          latitude={viewport.latitude}
+          longitude={viewport.longitude}
+          zoom={viewport.zoom}
+          bearing={viewport.bearing}
+          pitch={viewport.pitch}
+          minZoom={12}
+          width='100%'
+          height='100%'
+          mapStyle='mapbox://styles/mapbox/streets-v9'
+          onViewportChange={setViewport}
+          mapboxApiAccessToken={MAPBOX_TOKEN}
+        >
+          {zonesToRender}
+          {markersToRender}
+          <NavigationControl {...mapSettings.navigationControl} />
+          <GeolocateControl
+            {...mapSettings.geolocateControl}
+            trackUserLocation
+          />
+        </ReactMapGL>
+      </Container>
+    </div>
   );
 }
 
-Map.propTypes = {
-  mapboxApiAccessToken: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  viewport: PropTypes.object.isRequired,
-  setViewport: PropTypes.func.isRequired,
-};
+export default App;
