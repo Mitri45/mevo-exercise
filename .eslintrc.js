@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'eslint:recommended'],
+  extends: ['plugin:react/recommended', 'eslint:recommended', 'prettier'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -13,10 +13,16 @@ module.exports = {
   },
   plugins: ['react', 'react-hooks'],
   rules: {
+    'object-curly-newline': [
+      'warn',
+      {
+        multiline: true,
+        minProperties: 5,
+      },
+    ],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'no-tabs': 'off',
-    indent: 'warn',
     'operator-linebreak': ['error', 'after'],
     'react/jsx-indent': ['warn', 2],
     'jsx-quotes': ['error', 'prefer-single'],

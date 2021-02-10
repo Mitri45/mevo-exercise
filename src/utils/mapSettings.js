@@ -1,4 +1,13 @@
 const mapSettings = {
+  accessToken:
+    'pk.eyJ1IjoibWl0cmk0NSIsImEiOiJja2tqMjJ3djYwcXdpMnZxa3QydWVsYWh6In0.bS8T8wGM8SJCmouWHcJ1fA',
+  mapInitialState: {
+    latitude: -41.292757,
+    longitude: 174.790984,
+    zoom: 12,
+    bearing: 0,
+    pitch: 0,
+  },
   geolocateControl: {
     style: {
       top: 80,

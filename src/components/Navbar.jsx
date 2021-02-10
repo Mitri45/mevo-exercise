@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from './Button';
 
 export default function Navbar(props) {
-  const { clickHandler } = props;
+  const { findNearestCar, locationEnabled } = props;
 
   return (
     <nav className='bg-mevo-main flex justify-between'>
@@ -12,11 +12,22 @@ export default function Navbar(props) {
         src='https://assets.mevo.co.nz/brand/logo-light.svg'
         alt='Mevo Logo'
       />
-      <Button text='Back to Welly' clickHandler={clickHandler} />
+      <div className='flex justify-end flex-grow'>
+        <Button
+          text='Find nearest car'
+          locationEnabled={locationEnabled}
+          clickHandler={findNearestCar}
+        />
+        {/* <Button text='Back to Welly' clickHandler={backToWelly} /> */}
+      </div>
     </nav>
   );
 }
 
 Navbar.propTypes = {
-  clickHandler: PropTypes.func.isRequired,
+  backToWelly: PropTypes.func.isRequired,
+  findNearestCar: PropTypes.func.isRequired,
+  locationEnabled: PropTypes.bool,
 };
+
+Navbar.defaultProps = { locationEnabled: false };
