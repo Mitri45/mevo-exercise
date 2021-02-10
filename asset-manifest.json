@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/mevo-exercise/static/css/main.55ca31d3.chunk.css",
-    "main.js": "/mevo-exercise/static/js/main.30170d10.chunk.js",
-    "main.js.map": "/mevo-exercise/static/js/main.30170d10.chunk.js.map",
+    "main.css": "/mevo-exercise/static/css/main.02b82475.chunk.css",
+    "main.js": "/mevo-exercise/static/js/main.ebb11b54.chunk.js",
+    "main.js.map": "/mevo-exercise/static/js/main.ebb11b54.chunk.js.map",
     "runtime-main.js": "/mevo-exercise/static/js/runtime-main.328cb525.js",
     "runtime-main.js.map": "/mevo-exercise/static/js/runtime-main.328cb525.js.map",
-    "static/js/2.707e0c5e.chunk.js": "/mevo-exercise/static/js/2.707e0c5e.chunk.js",
-    "static/js/2.707e0c5e.chunk.js.map": "/mevo-exercise/static/js/2.707e0c5e.chunk.js.map",
+    "static/js/2.fb686013.chunk.js": "/mevo-exercise/static/js/2.fb686013.chunk.js",
+    "static/js/2.fb686013.chunk.js.map": "/mevo-exercise/static/js/2.fb686013.chunk.js.map",
     "index.html": "/mevo-exercise/index.html",
-    "static/css/main.55ca31d3.chunk.css.map": "/mevo-exercise/static/css/main.55ca31d3.chunk.css.map",
-    "static/js/2.707e0c5e.chunk.js.LICENSE.txt": "/mevo-exercise/static/js/2.707e0c5e.chunk.js.LICENSE.txt"
+    "static/css/main.02b82475.chunk.css.map": "/mevo-exercise/static/css/main.02b82475.chunk.css.map",
+    "static/js/2.fb686013.chunk.js.LICENSE.txt": "/mevo-exercise/static/js/2.fb686013.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.328cb525.js",
-    "static/js/2.707e0c5e.chunk.js",
-    "static/css/main.55ca31d3.chunk.css",
-    "static/js/main.30170d10.chunk.js"
+    "static/js/2.fb686013.chunk.js",
+    "static/css/main.02b82475.chunk.css",
+    "static/js/main.ebb11b54.chunk.js"
   ]
 }
