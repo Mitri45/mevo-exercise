@@ -11,7 +11,7 @@ const mapSettings = {
   geolocateControl: {
     style: {
       top: 80,
-      right: 0,
+      right: 10,
       margin: 15,
     },
     showAccuracyCircle: false,
@@ -24,7 +24,7 @@ const mapSettings = {
     showCompass: false,
     style: {
       top: 0,
-      right: 0,
+      right: 10,
       margin: 15,
     },
   },
@@ -34,7 +34,7 @@ const mapSettings = {
       source: 'geoDataSource',
       type: 'fill',
       paint: {
-        'fill-color': '#678191',
+        'fill-color': '#5B5F61',
         'fill-outline-color': '#f7590d',
         'fill-opacity': 0.3,
       },
