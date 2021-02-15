@@ -14,6 +14,7 @@ export default function Map(props) {
     zonesToRender,
     setUserPosition,
     setLocationEnabled,
+    directionToTheCar,
   } = props;
   // const directions = new MapboxDirections({
   //   accessToken: mapSettings.accessToken,
@@ -33,6 +34,8 @@ export default function Map(props) {
     >
       {zonesToRender}
       {markersToRender}
+      {directionToTheCar}
+
       <NavigationControl {...mapSettings.navigationControl} />
       <GeolocateControl
         {...mapSettings.geolocateControl}
@@ -60,11 +63,13 @@ Map.propTypes = {
   markersToRender: PropTypes.array,
   setUserPosition: PropTypes.func,
   setLocationEnabled: PropTypes.func,
+  directionToTheCar: PropTypes.object,
 };
 
 Map.defaultProps = {
   setUserPosition: '',
-  zonesToRender: {},
-  markersToRender: [],
+  zonesToRender: {} || [],
+  markersToRender: [] || {},
   setLocationEnabled: '',
+  directionToTheCar: {} || [],
 };

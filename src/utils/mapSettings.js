@@ -48,6 +48,19 @@ const mapSettings = {
         'line-width': 3,
       },
     },
+    directionsStyles: {
+      id: 'directionJson',
+      source: 'directionJson',
+      type: 'line',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+      },
+      paint: {
+        'line-color': '#BF93E4',
+        'line-width': 5,
+      },
+    },
   },
 };
 

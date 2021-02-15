@@ -1,8 +1,15 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useCallback, useEffect } from 'react';
 
-import { FlyToInterpolator, Marker, Source, Layer } from 'react-map-gl';
+import {
+  FlyToInterpolator,
+  Marker,
+  Source,
+  Layer,
+  WebMercatorViewport,
+} from 'react-map-gl';
 import { nearestPoint, point, featureCollection } from '@turf/turf';
+import * as polyline from '@mapbox/polyline';
 import mapSettings from './utils/mapSettings';
 import Map from './components/Map';
 import Navbar from './components/Navbar';
@@ -31,6 +38,7 @@ function App() {
   const [markersToRender, setMarkersToRender] = useState([]);
   const [userPosition, setUserPosition] = useState([]);
   const [locationEnabled, setLocationEnabled] = useState(false);
+  const [directionToTheCar, SetDirectionToTheCar] = useState([]);
 
   useEffect(() => {
     const fetchData = () => {
@@ -120,20 +128,51 @@ function App() {
           />
         </Marker>,
       ]);
+      const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${userPosition};${nearestMevoCarObj.geometry.coordinates}?access_token=${mapSettings.accessToken}`;
+      fetch(url)
+        .then((res) => res.json())
+        .then(
+          (resultData) => {
+            const convertToGeoJson = polyline.toGeoJSON(
+              resultData.routes[0].geometry,
+            );
+            SetDirectionToTheCar(
+              <Source type='geojson' data={convertToGeoJson} id='directionJson'>
+                <Layer {...mapSettings.layer.directionsStyles} />
+              </Source>,
+            );
+            console.log(resultData);
+            const first = convertToGeoJson.coordinates[0];
+            const last =
+              convertToGeoJson.coordinates[
+                convertToGeoJson.coordinates.length - 1
+              ];
+            console.log(convertToGeoJson.coordinates);
+            console.log(first);
+            console.log(last);
+
+            // prettier-ignore
+            const {latitude, longitude, zoom} = new WebMercatorViewport(viewport).fitBounds([
+              first,
+              last,
+            ]);
+
+            setViewport({
+              ...viewport,
+              longitude,
+              latitude,
+              zoom,
+              transitionInterpolator: new FlyToInterpolator(),
+              transitionDuration: 'auto',
+            });
+          },
+          (errorData) => {
+            // TODO: Error handling
+            console.log(errorData);
+          },
+        );
     }
   };
-  // const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${userPosition};${nearestMevoCarObj.geometry.coordinates}?access_token=${mapSettings.accessToken}`;
-  // fetch(url)
-  //   .then((res) => res.json())
-  //   .then(
-  //     (resultData) => {
-  //       console.log(resultData);
-  //     },
-  //     (errorData) => {
-  //       // TODO: Error handling
-  //       console.log(errorData);
-  //     },
-  //   );
 
   return (
     <div className='App'>
@@ -151,6 +190,7 @@ function App() {
           setLocationEnabled={setLocationEnabled}
           zonesToRender={zonesToRender}
           markersToRender={markersToRender}
+          directionToTheCar={directionToTheCar}
         />
       </Container>
     </div>
