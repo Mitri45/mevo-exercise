@@ -28,7 +28,7 @@ export default function Map(props) {
       width='100%'
       height='100%'
       mapStyle='mapbox://styles/mapbox/streets-v9'
-      onViewStateChange={setViewport}
+      onViewStateChange={(nextViewport) => setViewport(nextViewport)}
       mapboxApiAccessToken={mapSettings.accessToken}
       // addControl={directions}
     >

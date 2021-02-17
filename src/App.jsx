@@ -1,13 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
-import {
-  FlyToInterpolator,
-  Marker,
-  Source,
-  Layer,
-  WebMercatorViewport,
-} from 'react-map-gl';
+import { FlyToInterpolator, Marker, Source, Layer } from 'react-map-gl';
 import { nearestPoint, point, featureCollection } from '@turf/turf';
 import * as polyline from '@mapbox/polyline';
 import mapSettings from './utils/mapSettings';
@@ -77,6 +71,7 @@ function App() {
                   }
                   longitude={Number(mevoMarker.position.longitude)}
                   latitude={Number(mevoMarker.position.latitude)}
+                  offsetTop={-44}
                 >
                   <img
                     src={mevoMarker.iconUrl}
@@ -113,21 +108,19 @@ function App() {
         el.position.latitude == nearestMevoCarObj.geometry.coordinates[1],
     );
     if (nearestMarker) {
-      setMarkersToRender([
+      setMarkersToRender(
         <Marker
-          key={
-            nearestMarker.position.longitude + nearestMarker.position.latitude
-          }
           longitude={Number(nearestMarker.position.longitude)}
           latitude={Number(nearestMarker.position.latitude)}
+          offsetTop={-44}
         >
           <img
             src={nearestMarker.iconUrl}
-            alt='Mevo car position'
-            className='w-10 h-auto'
+            alt='Nearest Mevo car position'
+            className='animate-car-found w-10 h-auto '
           />
         </Marker>,
-      ]);
+      );
       const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${userPosition};${nearestMevoCarObj.geometry.coordinates}?access_token=${mapSettings.accessToken}`;
       fetch(url)
         .then((res) => res.json())
@@ -141,30 +134,27 @@ function App() {
                 <Layer {...mapSettings.layer.directionsStyles} />
               </Source>,
             );
-            console.log(resultData);
             const first = convertToGeoJson.coordinates[0];
             const last =
               convertToGeoJson.coordinates[
                 convertToGeoJson.coordinates.length - 1
               ];
-            console.log(convertToGeoJson.coordinates);
+            console.log(convertToGeoJson);
             console.log(first);
             console.log(last);
 
             // prettier-ignore
-            const {latitude, longitude, zoom} = new WebMercatorViewport(viewport).fitBounds([
-              first,
-              last,
-            ]);
-
-            setViewport({
-              ...viewport,
-              longitude,
-              latitude,
-              zoom,
-              transitionInterpolator: new FlyToInterpolator(),
-              transitionDuration: 'auto',
-            });
+            // const { longitude, latitude } = new WebMercatorViewport(viewport).fitBounds([first, last]);
+            // console.log(longitude, latitude);
+            // setViewport({
+            //   ...viewport,
+            //   viewState: {
+            //     longitude,
+            //     latitude,
+            //     transitionInterpolator: new FlyToInterpolator(),
+            //     transitionDuration: 'auto',
+            //   },
+            // });
           },
           (errorData) => {
             // TODO: Error handling
